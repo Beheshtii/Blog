@@ -21,8 +21,3 @@ class PostSerializer(serializers.ModelSerializer):
         return obj.get_absolute_url()
 
 
-class CategorySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = CategoryModel
-        fields = '__all__'

@@ -9,6 +9,8 @@ class CategoryModel(models.Model):
 
     class Meta:
         db_table = 'category'
+        verbose_name_plural = 'دسته بندی ها'
+        verbose_name = 'دسته بندی'
 
     def __str__(self):
         return self.title
