@@ -19,3 +19,10 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_slug(self, obj):
         return obj.get_absolute_url()
+
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CategoryModel
+        fields = '__all__'
