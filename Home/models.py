@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from Accounts.models import User
+from django.urls import reverse
 
 class CategoryModel(models.Model):
     title = models.CharField(max_length=100, unique=True)
@@ -33,4 +34,7 @@ class PostModel(models.Model):
     def __str__(self):
         if len(self.content) <= 30: return self.content
         return self.content[:30]
+
+    def get_absolute_url(self):
+        return reverse("post-detail", args=[self.id, self.slug])
 
