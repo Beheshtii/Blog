@@ -68,7 +68,7 @@ class PostDetailAPIView(APIView):
         return Response(ser_data.data, status=status.HTTP_200_OK)
 
     def put(self, request: Request, post_id):
-        post: PostModel = get_object_or_404(PostModel, id=post_id)
+        post: PostModel = get_object_or_404(PostModel, id=post_id, author=request.user)
         ser_data = PostSerializer(instance=post, data=request.data)
         if ser_data.is_valid():
             ser_data.save(author=request.user)
@@ -76,6 +76,6 @@ class PostDetailAPIView(APIView):
         return Response(ser_data.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request: Request, post_id):
-        post: PostModel = get_object_or_404(PostModel, id=post_id)
+        post: PostModel = get_object_or_404(PostModel, id=post_id, author=request.user)
         post.delete()
         return Response({"message": "post deleted"}, status=status.HTTP_204_NO_CONTENT)
